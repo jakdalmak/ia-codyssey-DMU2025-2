@@ -16,7 +16,9 @@ FastAPI + uvicorn + CSV 저장 기반 간단 TODO API
 사용한 명령어와 실행 방법 :
 
 #0 venv를 github에 올리지는 않았습니다.
-사유 : venv는 
+사유 : venv는 가상 환경이므로, 이를 올리게 된다면 구현된 python 환경 전체를 올리는 것과 다름없음.(용량 및 보안 등의 문제 가능성)
+이 대신 개발자가 venv를 이용해 가상환경을 구현하면, 그 가상환경에 필요한 패키지 목록만을 제공하기위한
+requirements.txt만 업로드하였음.  
 
 #1 venv 가상 환경 구현 
 python -m venv venv
