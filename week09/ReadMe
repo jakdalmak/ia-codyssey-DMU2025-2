@@ -1,0 +1,47 @@
+파일이 너무 많아져 정리 목적으로 작성드립니다.
+평가 시 참조 바랍니다.
+
+main.py
+코디세이 문제에서 작성한 질문 데이터를 실제 데이터베이스에 저장해보는 실행 예제를 위한 파일입니다. 
+데이터베이스 설정과 모델이 올바르게 동작하는지 확인하기 위해 사용합니다.
+
+database.py
+코디세이 문제에서 요구한 “ORM(Object Relational Mapping)을 사용해서 데이터베이스 작업을 해야 한다”, 
+“Database는 SQLite를 사용한다”, “autocmmit은 False 로 설정한다”는 요구사항을 만족하기 위한 설정 파일입니다. 
+SQLAlchemy 엔진, 세션(SessionLocal), Base 클래스를 정의합니다.
+
+models.py
+코디세이 문제에서 요구한 “질문과 답변에 대한 모델 파일 작성” 및
+“질문: id, subject, content, create_date 필드 정의” 요구사항을 구현하기 위한 파일입니다. 
+SQLAlchemy ORM으로 Question, Answer 모델을 정의합니다.
+
+alembic.ini
+코디세이 문제에서 요구한 “alembic 을 이용해서 revision 파일을 생성한다 / 실행한다”는 요구사항을 수행하기 위한 Alembic 설정 파일입니다. 
+SQLite(board.db)와 연결되도록 sqlalchemy.url을 지정합니다.
+
+migrations/
+코디세이 문제에서 요구한 Alembic 기반 마이그레이션 기능(“revision 파일 생성 / 실행”)을 실제로 동작시키기 위한 폴더입니다. 
+env.py와 versions/ 아래 리비전 파일들이 위치하며, ORM 모델을 기반으로 SQLite 테이블을 생성하는 역할을 합니다.
+
+board.db
+코디세이 문제에서 “메모리에 있는 리스트 객체를 사용하다 보니 앱 종료 시 사라지는 문제를 데이터베이스로 해결한다”는 요구사항을 
+만족하기 위해 생성되는 SQLite 데이터베이스 파일입니다. 
+Alembic 마이그레이션 실행 결과로 question, answer 테이블이 저장됩니다.
+
+check_db.py
+코디세이 문제에서 요구한 “SQLite에 테이블이 잘 생성되었는지 확인한다”는 요구사항을, 
+sqlite3 CLI 없이 파이썬과 SQLAlchemy로 확인하기 위한 보조 스크립트입니다. 
+현재 DB에 생성된 테이블 목록을 출력합니다.
+
+check_db_sqlite.py
+코디세이 문제에서 요구한 “SQLite에 테이블이 잘 생성되었는지 확인한다”는 요구사항을, 파이썬 표준 라이브러리 
+sqlite3를 이용해 직접 SQL로 확인하기 위한 선택적 보조 스크립트입니다.
+
+sql_lite_check_db.png
+보너스 과제에서 요구한 DB Browser for SQLite를 기반으로 테이블 생성 여부 확인을 수행한 스크린샷 입니다.
+
+requirements.txt
+venv에서 필요로 하는 패키지 목록이 나열된 txt입니다.
+윈도우 기준,
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+와 같은 명령어를 사용하여 본 프로젝트를 풀 받으신 뒤 새로 생성한 venv에 프로젝트 실행에 필요한 패키지를 즉시 인스톨 가능합니다.
