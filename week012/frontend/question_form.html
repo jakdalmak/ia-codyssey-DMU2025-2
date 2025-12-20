@@ -1,0 +1,60 @@
+<!-- frontend/question_form.html -->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>질문 등록</title>
+  </head>
+  <body>
+    <h1>질문 등록</h1>
+
+    <form id="question-form">
+      <div>
+        <label for="subject">제목</label>
+        <input id="subject" name="subject" type="text" required />
+      </div>
+      <div>
+        <label for="content">내용</label><br />
+        <textarea
+          id="content"
+          name="content"
+          rows="5"
+          cols="40"
+          required
+        ></textarea>
+      </div>
+      <button type="submit">등록</button>
+    </form>
+
+    <pre id="result"></pre>
+
+    <script>
+      const form = document.getElementById("question-form");
+      const resultEl = document.getElementById("result");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const subject = document.getElementById("subject").value;
+        const content = document.getElementById("content").value;
+
+        const payload = { subject, content };
+
+        try {
+          const res = await fetch("http://localhost:8000/api/question/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+          resultEl.textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+          resultEl.textContent = "에러: " + err;
+        }
+      });
+    </script>
+  </body>
+</html>
